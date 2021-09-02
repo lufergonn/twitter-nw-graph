@@ -9,7 +9,7 @@ class BearerAuth(rq.auth.AuthBase):
         return r
 
 
-def get_tws(url):
+def get_tws(url: str):
     bearer = open('key.txt', 'r').read().split('\n')[0]
     data = rq.get(url, auth=BearerAuth(bearer))
 

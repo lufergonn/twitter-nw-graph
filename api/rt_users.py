@@ -1,7 +1,9 @@
 import json
+from typing import Dict
+
 from api.base import get_tws
 
-def rt_users(id):
+def rt_users(id: str) -> Dict:
     url = f'https://api.twitter.com/1.1/statuses/retweets/{id}.json?count=100'
     data = get_tws(url)
 

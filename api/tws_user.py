@@ -1,11 +1,14 @@
-import json
-from api.base import get_tws
 from urllib.parse import quote
+import json
+from typing import Dict
 
-def tws_user(user, ctexact='', mention='', hashtag=''):
-    ctexact = f'+%22{quote(ctexact)}%22' if ctexact != '' else ''
-    mention = f'+%40{mention}' if mention != '' else ''
-    hashtag = f'+%23{hashtag}' if hashtag != '' else ''
+from api.base import get_tws
+
+def tws_user(user: str, ctexact: str = None, mention: str = None, hashtag: str = None) -> Dict:
+    ctexact = f'+%22{quote(ctexact)}%22' if ctexact else ''
+    mention = f'+%40{mention}' if mention else ''
+    hashtag = f'+%23{hashtag}' if hashtag else ''
+    
     url = f'https://api.twitter.com/1.1/search/tweets.json?q=from:{user}{ctexact}{mention}'
     url += f'{hashtag}&result_type=recent&count=100'
 
