@@ -1,10 +1,12 @@
-from api.tws_user import tws_user
-import numpy as np
-import json
 import os
+import json
 import time
 
-def get_users_to_create():
+import numpy as np
+
+from api.tws_user import tws_user
+
+def get_users_to_create() -> np.ndarray:
     dir_tws = 'data/tws'
     ls = os.listdir(dir_tws)
 
@@ -25,7 +27,7 @@ def get_users_to_create():
     files = np.unique(files)
     return files
 
-def create_json():
+def create_json() -> int:
     users = get_users_to_create()
     count = 0
 

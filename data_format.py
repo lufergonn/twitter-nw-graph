@@ -1,8 +1,9 @@
-import pandas as pd
-import json
 import os
+import json
 
-def read_data():
+import pandas as pd
+
+def read_data() -> None:
     users = pd.DataFrame(columns=['id', 'img'])
     users_rel = pd.DataFrame(columns=['from', 'to'])
 
@@ -47,9 +48,8 @@ def read_data():
     users_rel = users_rel.drop_duplicates(ignore_index=True)
     users.to_json('data/users.json', orient='records')
     users_rel.to_json('data/users_rel.json', orient='records')
-    return 0
 
-def data_format(user):
+def data_format(user: str) -> None:
     read_data()
 
     data = {
