@@ -1,22 +1,25 @@
+import os
+from shutil import rmtree
+import argparse
+
 from api.rt_users import rt_users
 from api.tws_user import tws_user
 from create_json import create_json
 from data_format import data_format
-from shutil import rmtree
-import argparse
-import os
 
 def main():
     parser = argparse.ArgumentParser()
+
     parser.add_argument('-t', '--type', default='tweet',help='Tweet or User')
     parser.add_argument('-v', '--value', default='',
-            help='For tweets, tweet id and for users, twitter username.')
+        help='For tweets, tweet id and for users, twitter username.')
     parser.add_argument('-n', '--number-levels', default=1, type=int, help='Number of levels')
     parser.add_argument('-x', '--ctexact', default='',help='[type:user][optional] Containing the exact phrase "x"')
     parser.add_argument('-m', '--mention', default='',help='[type:user][optional] Mentioning Twitter account "x"')
     parser.add_argument('-g', '--hashtag', default='',help='[type:user][optional] Containing the hashtag "x"')
 
     args = parser.parse_args()
+    
     type_tweet = args.type.lower() if args.type.lower() in ['tweet', 'user'] else False
     value_tweet = args.value if args.value != '' else False
     number_levels = args.number_levels if args.number_levels > 0 else False
